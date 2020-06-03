@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contractor Home</title>
+</head>
+<body>
+    <header>
+        <h1>Hello {{contractor.alias}}</h1>
+        <a href="/con_home">Return to Homepage</a>
+        <a href="/logout">Logout</a>
+    </header>
+
+<h3>{{contractor.alias}}, information!</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id ultricies odio. Nulla purus odio, hendrerit at pharetra ac, ullamcorper vel ligula. Cras pellentesque velit sed vestibulum faucibus. Sed at facilisis magna. Vestibulum imperdiet, nibh nec aliquet mattis, magna nisi interdum tortor, at commodo nisl urna ut nisl. Fusce congue nec turpis in tempor. Maecenas nisl lorem, semper sit amet ullamcorper vitae, lobortis id purus. Donec nec nisi vestibulum, volutpat dolor non, viverra lectus. Nunc ut imperdiet sem.</p>
+<h5>My Specialties:</h5>
+{% for speciality in contractor.specialties.all %}
+<p>{{speciality.title}}</p>
+{% endfor %}
+<h6>Add Specialty Here:</h6>
+<form action="/specialty_add" method="POST">
+{% csrf_token %}
+<label class="mr-sm-2" for="inlineFormCustomSelect">Specialty</label>
+    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="specialty">
+        <option selected>Choose...</option>
+        <option value="General Contractor">General Contracting</option>
+        <option value="Landscaper">Landscaping</option>
+        <option value="Welder">Welding</option>
+        <option value="Mason">Masonry</option>
+        <option value="Concrete">Concrete Installation</option>
+    </select>
+</form>
+
+<H4>Completed Tasks</H4>
+<table>
+    <tr>
+        <th>Project Photos</th>
+        <th>Customer Comments</th>
+        <th>Rating</th>
+    </tr>
+
+</table>
+
+</body>
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+crossorigin="anonymous"></script>
+
+<script>
+// Get the current year for the copyright
+$('#year').text(new Date().getFullYear());
+</script>
+
+</html>

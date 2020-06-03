@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #container {
+            width: 95%;
+            margin: 0 auto;
+            padding: 15px;
+        }
+        #forms{
+            width: 100%;
+        }
+        #reg{
+            width: 70%;
+            padding: 5px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        #login{
+            width: 25%;
+            padding: 5px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        #specialties {
+            width: 70%;
+            margin-left: 10px;
+        }
+
+        #specialties .form-check {
+            width: fit-content;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Welcome Contractor to Openbid.com</h1>
+        <p>Please provide the information below.</p>
+        <div id="forms">
+            <form action="/con_register" method="POST" id='reg'>
+                {% csrf_token %}
+                <h3>New Contractor</h3>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="bizzName">Business Name</label>
+                        <input type="text" class="form-control" placeholder="Business Name" name="bname">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="alias">Alias</label>
+                        <input type="text" class="form-control" placeholder="Alias" name="alias">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPassword4">Password</label>
+                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password"
+                            name="password">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="inputCity">City</label>
+                        <input type="text" class="form-control" name="city">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" name="state">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="inputZip">Zip</label>
+                        <input type="text" class="form-control" id="inputZip" name="zipcode">
+                    </div>
+                    <div class="form-row align-items-center" id="specialties">
+                        <div class="col-auto my-1">
+                            <label class="mr-sm-2" for="inlineFormCustomSelect">Specialty</label>
+                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="specialty">
+                                <option selected>Choose...</option>
+                                <option value="General Contractor">General Contracting</option>
+                                <option value="Landscaper">Landscaping</option>
+                                <option value="Welder">Welding</option>
+                                <option value="Mason">Masonry</option>
+                                <option value="Concrete">Concrete Installation</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+            <form action="/con_login" method="POST" id="login">
+                {% csrf_token %}
+                <h1>Login</h1> <br>
+                <label for="email">Email</label><br>
+                <input type="email" name="email" id="email"><br>
+                <label for="password">Password</label><br>
+                <input type="password" name="password" id="password"><br>
+                <button>Login</button>
+            </form>
+        </div>
+        <div id="error">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
